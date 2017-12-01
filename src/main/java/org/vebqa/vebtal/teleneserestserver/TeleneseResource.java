@@ -46,7 +46,7 @@ public class TeleneseResource {
 		String tCmd = cmd.getCommand().toLowerCase().trim();
 		// erster Buchstabe gross
 		tCmd = WordUtils.capitalizeFully(tCmd);
-		String tClass = "org.veba.roborest.telenese." + tCmd;
+		String tClass = "org.vebqa.vebtal.telenese." + tCmd;
 		Response result = null;
 		try {
 			Class<?> cmdClass = Class.forName(tClass);
@@ -54,27 +54,20 @@ public class TeleneseResource {
 			Object cmdObj = cons.newInstance(cmd.getCommand(), cmd.getTarget(), cmd.getValue());
 			Method m = cmdClass.getDeclaredMethod("executeImpl", TerminalDriver.class);
 			result = (Response)m.invoke(cmdObj, driver);
-			
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error("Command implementation class not found!", e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Execution method in command implementation class not found!", e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Security exception", e);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Cannot instantiate command implementation class!", e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Cannot access implementation class!", e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Wrong arguments!", e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error while invoking class!", e);
 		}
 		
 		if (result == null) {
@@ -102,7 +95,7 @@ public class TeleneseResource {
 	public Response createSession(Session sess) {
 		Tn5250TestAdaptionPlugin.addCommandToList(sess);
 		
-		this.driver =  new TerminalDriver();
+		driver =  new TerminalDriver();
 		
 		Map<String, Object> configs = new HashMap<String, Object>();
 		
@@ -116,11 +109,11 @@ public class TeleneseResource {
 		}
 		
 		// connect to system with custom config
-		this.driver.connectTo(sess.getHost(), Integer.valueOf(sess.getPort()), configs);
+		driver.connectTo(sess.getHost(), Integer.valueOf(sess.getPort()), configs);
 		
 		Response tResponse = new Response();
 		tResponse.setCode("0");
-		Tn5250TestAdaptionPlugin.setLatestResult(true, this.driver.getDumpScreen());
+		Tn5250TestAdaptionPlugin.setLatestResult(true, driver.getDumpScreen());
 		return tResponse;
 	}	
 }

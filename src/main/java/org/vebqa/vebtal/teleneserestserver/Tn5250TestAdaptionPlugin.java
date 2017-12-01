@@ -1,6 +1,7 @@
 package org.vebqa.vebtal.teleneserestserver;
 
 import org.vebqa.vebtal.AbstractTestAdaptionPlugin;
+import org.vebqa.vebtal.TestAdaptionType;
 import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandResult;
 import org.vebqa.vebtal.model.Session;
@@ -22,6 +23,10 @@ import javafx.scene.layout.HBox;
 @SuppressWarnings("restriction")
 public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 
+	public Tn5250TestAdaptionPlugin() {
+		super(TestAdaptionType.ADAPTER);
+	}
+	
 	/** Start/Stop Button **/
 	private static final Button btnStartStop = new Button();
 	
