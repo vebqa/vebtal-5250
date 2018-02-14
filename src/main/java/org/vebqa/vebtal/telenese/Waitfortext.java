@@ -120,11 +120,10 @@ public class Waitfortext extends AbstractCommand {
 		while (!finished) {
 			result = ScreenUtils.checkFindBy(newFindBy, driver);
 			
-			try {
-				Thread.sleep(500L);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (!result) {
+				driver.waitForUpdate(500L);
 			}
+			
 			testTime = new Date().getTime();
 			if (result || stop > testTime) {
 				finished = true;
