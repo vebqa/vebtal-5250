@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.model.Command;
@@ -45,7 +44,10 @@ public class TeleneseResource {
 		// erst alles klein schreiben
 		String tCmd = cmd.getCommand().toLowerCase().trim();
 		// erster Buchstabe gross
-		tCmd = WordUtils.capitalizeFully(tCmd);
+		String cmdFL = tCmd.substring(0, 1).toUpperCase(); 
+		String cmdRest = tCmd.substring(1);
+		tCmd = cmdFL + cmdRest;
+
 		String tClass = "org.vebqa.vebtal.telenese." + tCmd;
 		Response result = null;
 		try {
