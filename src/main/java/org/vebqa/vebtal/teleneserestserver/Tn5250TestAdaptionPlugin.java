@@ -9,8 +9,6 @@ import org.vebqa.vebtal.model.Session;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -39,7 +37,7 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 	}
 
 	@Override
-	public Class getImplementation() {
+	public Class<?> getImplementation() {
 		return TeleneseResource.class;
 	}
 	
@@ -50,14 +48,14 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 		Tab seleneseTab = new Tab();
 		seleneseTab.setText("Telenese / TN5250");
 		
-		btnStartStop.setText("Dump screen");
-		btnStartStop.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				// Dump screen and write to log
-			}
-		});
+//		btnStartStop.setText("Dump screen");
+//		btnStartStop.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// Dump screen and write to log
+//			}
+//		});
 
 		// LogBox
 		BorderPane root = new BorderPane();

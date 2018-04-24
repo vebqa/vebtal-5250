@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.TestAdaptionResource;
 import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.Response;
 import org.vebqa.vebtal.model.Session;
@@ -21,7 +22,7 @@ import org.vebqa.vebtal.model.Session;
 import com.terminaldriver.tn5250j.TerminalDriver;
 
 @Path("telenese")
-public class TeleneseResource {
+public class TeleneseResource implements TestAdaptionResource {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeleneseResource.class);
 
@@ -34,7 +35,7 @@ public class TeleneseResource {
 	@Path("execute")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response executeTelenese(Command cmd) {
+	public Response execute(Command cmd) {
 		Tn5250TestAdaptionPlugin.addCommandToList(cmd);
 		
 		Response tResponse = new Response();
