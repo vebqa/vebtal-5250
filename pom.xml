@@ -12,8 +12,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.vebqa.vebtal</groupId>
-			<artifactId>vebtal-manager</artifactId>
-			<version>0.0.1-Snapshot</version>
+			<artifactId>vebtal-api</artifactId>
+			<version>0.9</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
