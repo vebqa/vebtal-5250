@@ -21,6 +21,8 @@ import javafx.scene.layout.HBox;
 @SuppressWarnings("restriction")
 public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 
+	private static final String ID = "tn5250";
+	
 	public Tn5250TestAdaptionPlugin() {
 		super(TestAdaptionType.ADAPTER);
 	}
@@ -128,4 +130,9 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 
 		return true;
 	}
+	
+	@Override
+	public String getAdaptionID() {
+		return ID;
+	}		
 }
