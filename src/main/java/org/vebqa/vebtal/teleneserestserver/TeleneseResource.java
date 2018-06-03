@@ -6,12 +6,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.TestAdaptionResource;
@@ -21,7 +15,6 @@ import org.vebqa.vebtal.model.Session;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 
-@Path("telenese")
 public class TeleneseResource implements TestAdaptionResource {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeleneseResource.class);
@@ -31,10 +24,6 @@ public class TeleneseResource implements TestAdaptionResource {
 	 */
 	private static TerminalDriver driver;
 	
-	@POST
-	@Path("execute")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response execute(Command cmd) {
 		Tn5250TestAdaptionPlugin.addCommandToList(cmd);
 		
@@ -91,10 +80,6 @@ public class TeleneseResource implements TestAdaptionResource {
 		return result;
 	}
 	
-	@POST
-	@Path("createsession")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response createSession(Session sess) {
 		Tn5250TestAdaptionPlugin.addCommandToList(sess);
 		

@@ -40,7 +40,7 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 
 	@Override
 	public Class<?> getImplementation() {
-		return TeleneseResource.class;
+		return null;
 	}
 	
 	@Override
@@ -127,7 +127,6 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 	
 	@Override
 	public boolean shutdown() {
-
 		return true;
 	}
 	
