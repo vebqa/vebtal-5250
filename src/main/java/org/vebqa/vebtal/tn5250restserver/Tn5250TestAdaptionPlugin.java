@@ -1,4 +1,4 @@
-package org.vebqa.vebtal.teleneserestserver;
+package org.vebqa.vebtal.tn5250restserver;
 
 import org.vebqa.vebtal.AbstractTestAdaptionPlugin;
 import org.vebqa.vebtal.TestAdaptionType;

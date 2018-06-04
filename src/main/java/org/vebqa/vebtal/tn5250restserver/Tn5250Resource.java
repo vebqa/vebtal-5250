@@ -1,23 +1,20 @@
-package org.vebqa.vebtal.teleneserestserver;
+package org.vebqa.vebtal.tn5250restserver;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.TestAdaptionResource;
 import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.Response;
-import org.vebqa.vebtal.model.Session;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 
-public class TeleneseResource implements TestAdaptionResource {
+public class Tn5250Resource implements TestAdaptionResource {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TeleneseResource.class);
+	private static final Logger logger = LoggerFactory.getLogger(Tn5250Resource.class);
 
 	/**
 	 * Terminal
@@ -80,28 +77,7 @@ public class TeleneseResource implements TestAdaptionResource {
 		return result;
 	}
 	
-	public Response createSession(Session sess) {
-		Tn5250TestAdaptionPlugin.addCommandToList(sess);
-		
-		driver =  new TerminalDriver();
-		
-		Map<String, Object> configs = new HashMap<String, Object>();
-		
-		// create the config
-		if (sess.getCodepage() != null) {
-			configs.put("codePage", sess.getCodepage());
-		}
-		
-		if (sess.getSsltype() != null) {
-			configs.put("SSL_TYPE", sess.getSsltype());
-		}
-		
-		// connect to system with custom config
-		driver.connectTo(sess.getHost(), Integer.valueOf(sess.getPort()), configs);
-		
-		Response tResponse = new Response();
-		tResponse.setCode("0");
-		Tn5250TestAdaptionPlugin.setLatestResult(true, driver.getDumpScreen());
-		return tResponse;
-	}	
+	public static void setDriver(TerminalDriver aDriver) {
+		driver = aDriver;
+	}
 }
