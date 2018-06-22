@@ -16,9 +16,9 @@ public class Pause extends AbstractCommand {
 	/**
 	 * Constructor
 	 * 
-	 * @param aCommand
-	 * @param aTarget
-	 * @param aValue
+	 * @param aCommand  command
+	 * @param aTarget	target
+	 * @param aValue	value
 	 */
 	public Pause(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
