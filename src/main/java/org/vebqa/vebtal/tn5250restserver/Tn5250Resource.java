@@ -21,6 +21,9 @@ public class Tn5250Resource implements TestAdaptionResource {
 	 */
 	private static TerminalDriver driver;
 	
+	public Tn5250Resource() {
+	}
+	
 	public Response execute(Command cmd) {
 		Tn5250TestAdaptionPlugin.addCommandToList(cmd);
 		

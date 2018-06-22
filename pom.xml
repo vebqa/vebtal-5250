@@ -138,12 +138,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.vebqa.vebtal</groupId>
+			<groupId>com.github.vebqa</groupId>
 			<artifactId>vebtal-api</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.terminaldriver.tn5250j</groupId>
+			<groupId>com.github.vebqa</groupId>
 			<artifactId>terminaldriver-tn5250j</artifactId>
 			<version>0.0.2</version>
 		</dependency>
