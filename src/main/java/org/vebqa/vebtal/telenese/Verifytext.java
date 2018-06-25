@@ -30,10 +30,10 @@ public class Verifytext extends AbstractCommand {
 		String[] parts = target.split("=");
 		switch (parts[0]) {
 			case "column":
-				tColumn = Integer.valueOf(parts[1]);
+				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
-				tRow = Integer.valueOf(parts[1]);
+				tRow = Integer.parseInt(parts[1]);
 				break;
 			case "labelText":
 				tLabelText = parts[1];
@@ -41,8 +41,8 @@ public class Verifytext extends AbstractCommand {
 		}
 		
 		final String labelText = tLabelText;
-		final int row = tRow;
-		final int column = tColumn;
+		final int sRow = tRow;
+		final int sColumn = tColumn;
 		
 		Response tResp = new Response();
 		
@@ -53,7 +53,7 @@ public class Verifytext extends AbstractCommand {
 			}
 			
 			public int row() {
-				return Integer.valueOf(row);
+				return sRow;
 			}
 
 			public Class<? extends Annotation> annotationType() {
@@ -77,7 +77,7 @@ public class Verifytext extends AbstractCommand {
 			}
 
 			public int column() {
-				return column;
+				return sColumn;
 			}
 
 			public int length() {

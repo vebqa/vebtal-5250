@@ -11,7 +11,7 @@ public class Pause extends AbstractCommand {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = LoggerFactory.getLogger(Waitfortext.class);
+	private static final Logger logger = LoggerFactory.getLogger(Pause.class);
 
 	/**
 	 * Constructor
@@ -30,7 +30,7 @@ public class Pause extends AbstractCommand {
 	@Override
 	public Response executeImpl(TerminalDriver driver) {
 		int tWait = Integer.parseInt(target);
-
+		logger.debug("pause for some time: {} (ms)", target);
 		Response tResp = new Response();
 
 		try {

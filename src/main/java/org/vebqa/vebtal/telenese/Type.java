@@ -21,7 +21,7 @@ public class Type extends AbstractCommand {
 		String[] parts = target.split("=");
 		switch (parts[0]) {
 			case "id" :
-				id = Integer.valueOf(parts[1]);
+				id = Integer.parseInt(parts[1]);
 		}
 		
 		ScreenField field = null;

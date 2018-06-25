@@ -36,10 +36,10 @@ public class Open extends AbstractCommand {
 				host = String.valueOf(parts[1]);
 				break;
 			case "port":
-				port = Integer.valueOf(parts[1]);
+				port = Integer.parseInt(parts[1]);
 				break;
 			case "codepage":
-				codepage = Integer.valueOf(parts[1]);
+				codepage = Integer.parseInt(parts[1]);
 				break;
 			case "ssltype":
 				ssltype = String.valueOf(parts[1]);

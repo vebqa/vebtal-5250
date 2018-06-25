@@ -3,6 +3,7 @@ package org.vebqa.vebtal.telenese;
 import java.lang.annotation.Annotation;
 import java.util.Date;
 
+import org.python.icu.util.Calendar;
 import org.vebqa.vebtal.model.Response;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
@@ -36,16 +37,16 @@ public class Waitfornotvisible extends AbstractCommand {
 		String[] parts = target.split("=");
 		switch (parts[0]) {
 			case "column":
-				tColumn = Integer.valueOf(parts[1]);
+				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
-				tRow = Integer.valueOf(parts[1]);
+				tRow = Integer.parseInt(parts[1]);
 				break;
 		}
 		
 		final String labelText = tLabelText;
-		final int row = tRow;
-		final int column = tColumn;
+		final int sRow = tRow;
+		final int sColumn = tColumn;
 		
 		Response tResp = new Response();
 		
@@ -56,7 +57,7 @@ public class Waitfornotvisible extends AbstractCommand {
 			}
 			
 			public int row() {
-				return Integer.valueOf(row);
+				return sRow;
 			}
 
 			public Class<? extends Annotation> annotationType() {
@@ -80,7 +81,7 @@ public class Waitfornotvisible extends AbstractCommand {
 			}
 
 			public int column() {
-				return column;
+				return sColumn;
 			}
 
 			public int length() {
@@ -114,9 +115,9 @@ public class Waitfornotvisible extends AbstractCommand {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (!result || stop > new Date().getTime()) {
+			if (!result || (stop > Calendar.getInstance().getTime().getTime())) {
 				finished = true;
-			}
+			} 
 		}
 		
 		if (!result) {

@@ -1,7 +1,10 @@
 package org.vebqa.vebtal.telenese;
 
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.List;
 
+import org.tn5250j.framework.tn5250.ScreenField;
 import org.vebqa.vebtal.model.Response;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
@@ -27,7 +30,9 @@ public class Storetext extends AbstractCommand {
 		// column, row, labelText
 		int tColumn = 0;
 		int tRow = 0;
-		String tLabelText = "";
+		int tId = 0;
+
+		boolean modeText = true;
 
 		// Beispiel: row=4;column=23
 		String[] someToken = target.split(";");
@@ -37,73 +42,89 @@ public class Storetext extends AbstractCommand {
 			String[] parts = aToken.split("=");
 			switch (parts[0]) {
 			case "column":
-				tColumn = Integer.valueOf(parts[1]);
+				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
-				tRow = Integer.valueOf(parts[1]);
+				tRow = Integer.parseInt(parts[1]);
 				break;
-			case "labelText":
-				tLabelText = parts[1];
+			case "id":
+				tId = Integer.parseInt(parts[1]);
+				modeText = false;
 				break;
 			}
 		}
 
-		final String labelText = tLabelText;
-		final int row = tRow;
-		final int column = tColumn;
+		if (modeText) {
+			final int sRow = tRow;
+			final int sColumn = tColumn;
 
-		FindBy newFindBy = new FindBy() {
+			FindBy newFindBy = new FindBy() {
 
-			public String text() {
-				return "";
+				public String text() {
+					return "";
+				}
+
+				public int row() {
+					return sRow;
+				}
+
+				public Class<? extends Annotation> annotationType() {
+					return null;
+				}
+
+				public How how() {
+					return How.UNSET;
+				}
+
+				public String using() {
+					return "";
+				}
+
+				public String labelText() {
+					return "";
+				}
+
+				public String name() {
+					return "";
+				}
+
+				public int column() {
+					return sColumn;
+				}
+
+				public int length() {
+					return 0;
+				}
+
+				public ScreenAttribute attribute() {
+					return ScreenAttribute.UNSET;
+				}
+
+			};
+			ScreenTextBlock block = ScreenUtils.applyFindScreenTextBlock(driver, newFindBy,
+					new ScreenFieldReader(driver), 0);
+			if (block == null) {
+				tResp.setCode("1");
+				tResp.setMessage("Cannot find screen text block for given target.");
+			} else {
+				tResp.setCode("0");
+				tResp.setStoredKey(this.value);
+				tResp.setStoredValue(block.getString().trim());
 			}
-
-			public int row() {
-				return Integer.valueOf(row);
-			}
-
-			public Class<? extends Annotation> annotationType() {
-				return null;
-			}
-
-			public How how() {
-				return How.UNSET;
-			}
-
-			public String using() {
-				return "";
-			}
-
-			public String labelText() {
-				return labelText;
-			}
-
-			public String name() {
-				return "";
-			}
-
-			public int column() {
-				return column;
-			}
-
-			public int length() {
-				return 0;
-			}
-
-			public ScreenAttribute attribute() {
-				return ScreenAttribute.UNSET;
-			}
-
-		};
-		ScreenTextBlock block = ScreenUtils.applyFindScreenTextBlock(driver, newFindBy, new ScreenFieldReader(driver),
-				0);
-		if (block == null) {
-			tResp.setCode("1");
-			tResp.setMessage("Cannot find screen text block for given target.");
 		} else {
-			tResp.setCode("0");
-			tResp.setStoredKey(this.value);
-			tResp.setStoredValue(block.getString().trim());
+			// find by input id
+			final List<org.tn5250j.framework.tn5250.ScreenField> screenFields = Arrays
+					.asList(driver.getSession().getScreen().getScreenFields().getFields());
+			
+			if (!screenFields.isEmpty() && screenFields.size() >= tId) {
+				ScreenField sScreenField = screenFields.get(tId - 1);
+				tResp.setCode("0");
+				tResp.setStoredKey(this.value);
+				tResp.setStoredValue(sScreenField.getString());
+			} else {
+				tResp.setCode("1");
+				tResp.setMessage("Cannot find a screenfield with given id="+tId + "!");
+			}
 		}
 		return tResp;
 	}

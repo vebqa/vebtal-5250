@@ -1,6 +1,7 @@
 package org.vebqa.vebtal.telenese;
 
 import java.lang.annotation.Annotation;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.vebqa.vebtal.model.Response;
@@ -30,16 +31,16 @@ public class Waitfortextnotpresent extends AbstractCommand {
 		String[] parts = target.split("=");
 		switch (parts[0]) {
 			case "column":
-				tColumn = Integer.valueOf(parts[1]);
+				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
-				tRow = Integer.valueOf(parts[1]);
+				tRow = Integer.parseInt(parts[1]);
 				break;
 		}
 		
 		final String labelText = tLabelText;
-		final int row = tRow;
-		final int column = tColumn;
+		final int sRow = tRow;
+		final int sColumn = tColumn;
 		
 		Response tResp = new Response();
 		
@@ -50,7 +51,7 @@ public class Waitfortextnotpresent extends AbstractCommand {
 			}
 			
 			public int row() {
-				return Integer.valueOf(row);
+				return sRow;
 			}
 
 			public Class<? extends Annotation> annotationType() {
@@ -74,7 +75,7 @@ public class Waitfortextnotpresent extends AbstractCommand {
 			}
 
 			public int column() {
-				return column;
+				return sColumn;
 			}
 
 			public int length() {
@@ -108,7 +109,7 @@ public class Waitfortextnotpresent extends AbstractCommand {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (!result || stop > new Date().getTime()) {
+			if (!result || stop > Calendar.getInstance().getTime().getTime()) {
 				finished = true;
 			}
 		}
