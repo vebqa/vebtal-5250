@@ -120,9 +120,8 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 	public static void setLatestResult(Boolean success, final String aResult) {
 		Platform.runLater(() -> clData.get(clData.size() - 1).setLogInfo(aResult));
 		Platform.runLater(() -> clData.get(clData.size() - 1).setResult(success));
-
-		commandList.refresh();
 		Platform.runLater(() -> commandList.scrollTo(clData.size() - 1));
+		Platform.runLater(() -> commandList.refresh());
 	}
 	
 	@Override
