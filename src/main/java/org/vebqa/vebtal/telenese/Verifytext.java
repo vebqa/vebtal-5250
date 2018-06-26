@@ -18,40 +18,37 @@ public class Verifytext extends AbstractCommand {
 
 	@Override
 	public Response executeImpl(TerminalDriver driver) {
-		
-		// Refactor: Context 
+
+		// Refactor: Context
 		// target = value
 		// column, row, labelText
 		int tColumn = 0;
 		int tRow = 0;
-		String tLabelText = "";
-		
+
 		// Needs an equal
-		String[] parts = target.split("=");
-		switch (parts[0]) {
-			case "column":
+		String[] allToken = target.split(";");
+		for (String token : allToken) {
+			String[] parts = token.split("=");
+			switch (parts[0]) {
+			case "col":
 				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
 				tRow = Integer.parseInt(parts[1]);
 				break;
-			case "labelText":
-				tLabelText = parts[1];
-				break;
+			}
 		}
-		
-		final String labelText = tLabelText;
 		final int sRow = tRow;
 		final int sColumn = tColumn;
-		
+
 		Response tResp = new Response();
-		
+
 		FindBy newFindBy = new FindBy() {
-			
+
 			public String text() {
 				return value;
 			}
-			
+
 			public int row() {
 				return sRow;
 			}
@@ -69,7 +66,7 @@ public class Verifytext extends AbstractCommand {
 			}
 
 			public String labelText() {
-				return labelText;
+				return "";
 			}
 
 			public String name() {
@@ -87,16 +84,16 @@ public class Verifytext extends AbstractCommand {
 			public ScreenAttribute attribute() {
 				return ScreenAttribute.UNSET;
 			}
-						
+
 		};
-		
+
 		// Vorbedingungen: es darf nicht nur nach WildCard gesucht werden
 		if (value.contentEquals("*")) {
 			tResp.setCode("1");
 			tResp.setMessage("Search pattern contains wild card only.");
 			return tResp;
 		}
-		
+
 		boolean result = ScreenUtils.checkFindBy(newFindBy, driver);
 		if (result) {
 			tResp.setCode("0");

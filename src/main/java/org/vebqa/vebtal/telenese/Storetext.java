@@ -4,6 +4,8 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tn5250j.framework.tn5250.ScreenField;
 import org.vebqa.vebtal.model.Response;
 
@@ -17,6 +19,11 @@ import com.terminaldriver.tn5250j.util.ScreenUtils;
 
 public class Storetext extends AbstractCommand {
 
+	/**
+	 * Logger
+	 */
+	private static final Logger logger = LoggerFactory.getLogger(Storetext.class);
+	
 	public Storetext(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
 	}
@@ -34,14 +41,14 @@ public class Storetext extends AbstractCommand {
 
 		boolean modeText = true;
 
-		// Beispiel: row=4;column=23
+		// Beispiel: row=4;col=23
 		String[] someToken = target.split(";");
 
 		for (String aToken : someToken) {
 			// Needs an equal
 			String[] parts = aToken.split("=");
 			switch (parts[0]) {
-			case "column":
+			case "col":
 				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
@@ -109,7 +116,8 @@ public class Storetext extends AbstractCommand {
 			} else {
 				tResp.setCode("0");
 				tResp.setStoredKey(this.value);
-				tResp.setStoredValue(block.getString().trim());
+				tResp.setStoredValue(block.getString());
+				logger.info("store value {} with key {}.", block.getString(), this.value);
 			}
 		} else {
 			// find by input id
@@ -121,6 +129,7 @@ public class Storetext extends AbstractCommand {
 				tResp.setCode("0");
 				tResp.setStoredKey(this.value);
 				tResp.setStoredValue(sScreenField.getString());
+				logger.info("store value {} with key {}.", this.value, sScreenField.getString());
 			} else {
 				tResp.setCode("1");
 				tResp.setMessage("Cannot find a screenfield with given id="+tId + "!");
