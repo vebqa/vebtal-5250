@@ -41,7 +41,7 @@ public class Waitfortext extends AbstractCommand {
 		// column, row, labelText
 		int tColumn = 0;
 		int tRow = 0;
-		String tLabelText = "";
+		int tTimeOut = 10000;
 		
 		// Needs an equal
 		String[] parts = target.split("=");
@@ -52,9 +52,13 @@ public class Waitfortext extends AbstractCommand {
 			case "row":
 				tRow = Integer.parseInt(parts[1]);
 				break;
+			case "timeout":
+				tTimeOut = Integer.parseInt(parts[1]);
+				break;
+			default:
+				break;
 		}
 		
-		final String labelText = tLabelText;
 		final int sRow = tRow;
 		final int sColumn = tColumn;
 		
@@ -83,7 +87,7 @@ public class Waitfortext extends AbstractCommand {
 			}
 
 			public String labelText() {
-				return labelText;
+				return "";
 			}
 
 			public String name() {
@@ -115,7 +119,7 @@ public class Waitfortext extends AbstractCommand {
 		boolean result = false;
 		
 		long now = new Date().getTime();
-		long stop = now + 15000L;
+		long stop = now + tTimeOut;
 		long testTime = 0L;
 		
 		while (!finished) {
