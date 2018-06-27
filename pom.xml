@@ -183,7 +183,7 @@
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>terminaldriver-tn5250j</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
