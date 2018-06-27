@@ -33,6 +33,8 @@ public class Verifyattribute extends AbstractCommand {
 		case "text":
 			tText = parts[1].trim();
 			break;
+		default:
+			break;
 		}
 
 		Response tResp = new Response();

@@ -36,6 +36,8 @@ public class Verifytext extends AbstractCommand {
 			case "row":
 				tRow = Integer.parseInt(parts[1]);
 				break;
+			default:
+				break;
 			}
 		}
 		final int sRow = tRow;

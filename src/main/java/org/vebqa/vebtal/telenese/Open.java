@@ -44,6 +44,8 @@ public class Open extends AbstractCommand {
 			case "ssltype":
 				ssltype = String.valueOf(parts[1]);
 				break;
+			default:
+				break;
 			}
 		}
 

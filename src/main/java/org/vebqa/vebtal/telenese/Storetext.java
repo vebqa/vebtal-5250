@@ -58,6 +58,8 @@ public class Storetext extends AbstractCommand {
 				tId = Integer.parseInt(parts[1]);
 				modeText = false;
 				break;
+			default:
+				break;
 			}
 		}
 
@@ -128,8 +130,10 @@ public class Storetext extends AbstractCommand {
 				ScreenField sScreenField = screenFields.get(tId - 1);
 				tResp.setCode("0");
 				tResp.setStoredKey(this.value);
-				tResp.setStoredValue(sScreenField.getString());
-				logger.info("store value {} with key {}.", this.value, sScreenField.getString());
+
+				String storeValue = sScreenField.getString();
+				tResp.setStoredValue(storeValue);
+				logger.info("store value {} with key {}.", storeValue, this.value);
 			} else {
 				tResp.setCode("1");
 				tResp.setMessage("Cannot find a screenfield with given id="+tId + "!");

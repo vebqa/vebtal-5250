@@ -20,6 +20,8 @@ public class Typepassword extends AbstractCommand {
 		switch (parts[0]) {
 			case "id" :
 				id = Integer.parseInt(parts[1]);
+			default:
+				break;
 		}
 		
 		ScreenField field = null;

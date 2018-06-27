@@ -42,6 +42,8 @@ public class Waitfornotvisible extends AbstractCommand {
 			case "row":
 				tRow = Integer.parseInt(parts[1]);
 				break;
+			default:
+				break;
 		}
 		
 		final String labelText = tLabelText;
