@@ -59,7 +59,7 @@ public class Tn5250Resource implements TestAdaptionResource {
 		} catch (IllegalArgumentException e) {
 			logger.error("Wrong arguments!", e);
 		} catch (InvocationTargetException e) {
-			logger.error("Error while invoking class!", e);
+			logger.error("Error while invoking class. There was an exception in the keyword implementation. ", e.getTargetException());
 		}
 		
 		if (result == null) {
