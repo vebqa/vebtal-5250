@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.vebqa</groupId>
 	<artifactId>vebtal-5250</artifactId>
-	<version>0.9.1</version>
+	<version>0.9.2</version>
 
 
 	<name>Test Adaption Layer for Telnet 5250 terminals</name>
