@@ -2,6 +2,7 @@ package org.vebqa.vebtal.telenese;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
@@ -13,6 +14,7 @@ public class Keypressandwait extends AbstractCommand {
 	
 	public Keypressandwait(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
+		this.type = CommandType.ACTION;
 	}
 
 	@Override

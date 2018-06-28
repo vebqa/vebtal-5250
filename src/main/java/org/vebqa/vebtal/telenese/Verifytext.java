@@ -2,6 +2,7 @@ package org.vebqa.vebtal.telenese;
 
 import java.lang.annotation.Annotation;
 
+import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
@@ -14,6 +15,7 @@ public class Verifytext extends AbstractCommand {
 
 	public Verifytext(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
+		this.type = CommandType.ASSERTION;
 	}
 
 	@Override
