@@ -20,12 +20,16 @@ public class Waitfortext extends AbstractCommand {
 	 * Logger
 	 */
 	private static final Logger logger = LoggerFactory.getLogger(Waitfortext.class);
-	
+
 	/**
 	 * Constructor
-	 * @param aCommand	command
-	 * @param aTarget	target
-	 * @param aValue	value
+	 * 
+	 * @param aCommand
+	 *            command
+	 * @param aTarget
+	 *            target
+	 * @param aValue
+	 *            value
 	 */
 	public Waitfortext(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
@@ -36,40 +40,43 @@ public class Waitfortext extends AbstractCommand {
 	 */
 	@Override
 	public Response executeImpl(TerminalDriver driver) {
-		// Refactor: Context 
+		// Refactor: Context
 		// target = value
 		// column, row, labelText
 		int tColumn = 0;
 		int tRow = 0;
-		int tTimeOut = 10000;
-		
+		long tTimeOut = 10000L;
+
 		// Needs an equal
-		String[] parts = target.split("=");
-		switch (parts[0]) {
-			case "column":
+		String[] allToken = target.split(";");
+		for (String token : allToken) {
+			String[] parts = token.split("=");
+			switch (parts[0]) {
+			case "col":
 				tColumn = Integer.parseInt(parts[1]);
 				break;
 			case "row":
 				tRow = Integer.parseInt(parts[1]);
 				break;
 			case "timeout":
-				tTimeOut = Integer.parseInt(parts[1]);
+				tTimeOut = Long.parseLong(parts[1]);
 				break;
 			default:
 				break;
+			}
 		}
-		
+
 		final int sRow = tRow;
 		final int sColumn = tColumn;
-		
+
 		Response tResp = new Response();
-		
+
 		FindBy newFindBy = new FindBy() {
-			
+
 			public String text() {
 				return value;
 			}
-			
+
 			public int row() {
 				return sRow;
 			}
@@ -105,42 +112,42 @@ public class Waitfortext extends AbstractCommand {
 			public ScreenAttribute attribute() {
 				return ScreenAttribute.UNSET;
 			}
-						
+
 		};
-		
+
 		// Vorbedingungen: es darf nicht nur nach WildCard gesucht werden
 		if (value.contentEquals("*")) {
 			tResp.setCode("1");
 			tResp.setMessage("Search pattern contains wild card only.");
 			return tResp;
 		}
-		
+
 		boolean finished = false;
 		boolean result = false;
-		
+
 		long now = new Date().getTime();
 		long stop = now + tTimeOut;
 		long testTime = 0L;
-		
+
 		while (!finished) {
 			result = ScreenUtils.checkFindBy(newFindBy, driver);
-			
+
 			if (!result) {
-				driver.waitForUpdate(500L);
+				driver.waitForUpdate(250L);
 			}
-			
+
 			testTime = Calendar.getInstance().getTime().getTime();
 			if (result || stop > testTime) {
 				finished = true;
 			}
 		}
-		
+
 		if (result) {
 			tResp.setCode("0");
 			tResp.setMessage("Text: " + value + " found after : " + (testTime - now) + " ms.");
 		} else {
 			tResp.setCode("1");
-			tResp.setMessage("Text: "+ value + " is not visible after waiting for: " + (stop - testTime) + " ms.");
+			tResp.setMessage("Text: " + value + " is not visible after waiting for: " + (stop - testTime) + " ms.");
 		}
 		return tResp;
 	}

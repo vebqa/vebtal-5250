@@ -32,7 +32,7 @@ public class Waitfortextnotpresent extends AbstractCommand {
 		// column, row, labelText
 		int tColumn = 0;
 		int tRow = 0;
-		int tTimeOut = 10000;
+		long tTimeOut = 10000L;
 
 		// Beispiel: row=4;col=23
 		String[] someToken = target.split(";");
@@ -48,7 +48,7 @@ public class Waitfortextnotpresent extends AbstractCommand {
 				tRow = Integer.parseInt(parts[1]);
 				break;
 			case "timeout":
-				 tTimeOut = Integer.parseInt(parts[1]);
+				 tTimeOut = Long.parseLong(parts[1]);
 				break;
 			default:
 				break;
