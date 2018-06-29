@@ -22,6 +22,21 @@ public class Keypressandwait extends AbstractCommand {
 		Response tResp = new Response();
 		boolean result = false;
 		
+		long tTimeOut = 10000L;
+
+		// Needs an equal
+		String[] allToken = target.split(";");
+		for (String token : allToken) {
+			String[] parts = token.split("=");
+			switch (parts[0]) {
+			case "timeout":
+				tTimeOut = Long.parseLong(parts[1]);
+				break;
+			default:
+				break;
+			}
+		}		
+		
 		String aButton = this.value.toUpperCase();
 		if (aButton.startsWith("[") && aButton.endsWith("]")) {
 			aButton = aButton.substring(1, aButton.length());
@@ -34,7 +49,7 @@ public class Keypressandwait extends AbstractCommand {
 		
 		// Generischer Ansatz
 		driver.keys().press(Key.valueOf(aButton));
-		result = driver.waitForScreen(2000);
+		result = driver.waitForScreen(tTimeOut);
 		
 		if (result) {
 			tResp.setCode("0");
