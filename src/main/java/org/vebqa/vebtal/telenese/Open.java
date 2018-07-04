@@ -3,9 +3,12 @@ package org.vebqa.vebtal.telenese;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.vebqa.vebtal.GuiManager;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.sut.SutStatus;
 import org.vebqa.vebtal.tn5250restserver.Tn5250Resource;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 
@@ -62,10 +65,14 @@ public class Open extends AbstractCommand {
 		
 		// connect to system with custom config
 		driver.connectTo(host, port, configs);
+
 		Tn5250Resource.setDriver(driver);
 		
 		Response tResponse = new Response();
 		tResponse.setCode("0");
+		
+		GuiManager.getinstance().setTabStatus(Tn5250TestAdaptionPlugin.ID, SutStatus.CONNECTED);
+		
 		return tResponse;
 	}
 
