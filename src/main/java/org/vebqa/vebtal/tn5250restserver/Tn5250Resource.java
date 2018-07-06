@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.AbstractTestAdaptionResource;
 import org.vebqa.vebtal.TestAdaptionResource;
 import org.vebqa.vebtal.model.Command;
+import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
@@ -26,7 +27,6 @@ public class Tn5250Resource extends AbstractTestAdaptionResource implements Test
 	}
 	
 	public Response execute(Command cmd) {
-		Tn5250TestAdaptionPlugin.addCommandToList(cmd);
 		
 		Response tResponse = new Response();
 
@@ -35,6 +35,13 @@ public class Tn5250Resource extends AbstractTestAdaptionResource implements Test
 			Class<?> cmdClass = Class.forName("org.vebqa.vebtal.telenese." + getCommandClassName(cmd));
 			Constructor<?> cons = cmdClass.getConstructor(String.class, String.class, String.class);
 			Object cmdObj = cons.newInstance(cmd.getCommand(), cmd.getTarget(), cmd.getValue());
+			
+			// get type
+			Method mType = cmdClass.getMethod("getType");
+			CommandType cmdType = (CommandType)mType.invoke(cmdObj);
+			Tn5250TestAdaptionPlugin.addCommandToList(cmd, cmdType);
+			
+			// execute
 			Method m = cmdClass.getDeclaredMethod("executeImpl", TerminalDriver.class);
 
 			setStart();

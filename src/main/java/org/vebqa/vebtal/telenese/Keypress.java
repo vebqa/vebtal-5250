@@ -3,6 +3,7 @@ package org.vebqa.vebtal.telenese;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tn5250j.framework.tn5250.ScreenOIA;
+import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
@@ -19,7 +20,8 @@ public class Keypress extends AbstractCommand {
 	}
 
 	@Override
-	public Response executeImpl(TerminalDriver driver) {
+	public Response executeImpl(Object aDriver) {
+		TerminalDriver driver = (TerminalDriver)aDriver;
 		Response tResp = new Response();
 		
 		String aButton = this.value.toUpperCase();

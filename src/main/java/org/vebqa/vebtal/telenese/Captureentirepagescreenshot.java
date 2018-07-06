@@ -1,5 +1,6 @@
 package org.vebqa.vebtal.telenese;
 
+import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
@@ -13,7 +14,8 @@ public class Captureentirepagescreenshot extends AbstractCommand {
 	}
 
 	@Override
-	protected Response executeImpl(TerminalDriver driver) {
+	public Response executeImpl(Object aDriver) {
+		TerminalDriver driver = (TerminalDriver)aDriver;
 		Response tResp = new Response();
 		
 		return tResp;

@@ -4,6 +4,7 @@ import org.vebqa.vebtal.AbstractTestAdaptionPlugin;
 import org.vebqa.vebtal.TestAdaptionType;
 import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandResult;
+import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Session;
 
 import javafx.application.Platform;
@@ -38,17 +39,12 @@ public class Tn5250TestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 		return createTab(ID, commandList, clData);
 	}
 	
-	public static void addCommandToList(Session aSess) {
-		CommandResult tCR = new CommandResult("TNCreateSession", aSess.getHost() + ":" + aSess.getPort(), aSess.getCodepage() + "," + aSess.getSsltype());
-		Platform.runLater(() -> clData.add(tCR));
-	}
-
-	public static void addCommandToList(Command aCmd) {
+	public static void addCommandToList(Command aCmd, CommandType aType) {
 		String aValue = aCmd.getValue();
 		if (aCmd.getCommand().toLowerCase().indexOf("password") > 0) {
 			aValue = "*****";
 		}
-		CommandResult tCR = new CommandResult(aCmd.getCommand(), aCmd.getTarget(), aValue);
+		CommandResult tCR = new CommandResult(aCmd.getCommand(), aCmd.getTarget(), aValue, aType);
 		Platform.runLater(() -> clData.add(tCR));
 	}
 	

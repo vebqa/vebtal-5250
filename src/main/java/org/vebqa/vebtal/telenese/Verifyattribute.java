@@ -2,6 +2,7 @@ package org.vebqa.vebtal.telenese;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
@@ -23,7 +24,8 @@ public class Verifyattribute extends AbstractCommand {
 	}
 
 	@Override
-	public Response executeImpl(TerminalDriver driver) {
+	public Response executeImpl(Object aDriver) {
+		TerminalDriver driver = (TerminalDriver)aDriver;
 		// Refactor: Context
 		// target = value
 		// column, row, labelText

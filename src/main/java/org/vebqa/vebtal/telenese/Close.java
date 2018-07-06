@@ -3,6 +3,7 @@ package org.vebqa.vebtal.telenese;
 import java.io.IOException;
 
 import org.vebqa.vebtal.GuiManager;
+import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 import org.vebqa.vebtal.sut.SutStatus;
@@ -18,7 +19,8 @@ public class Close extends AbstractCommand {
 	}
 	
 	@Override
-	public Response executeImpl(TerminalDriver driver) {
+	public Response executeImpl(Object aDriver) {
+		TerminalDriver driver = (TerminalDriver)aDriver;
 		Response tResp = new Response();
 		try {
 			driver.close();
