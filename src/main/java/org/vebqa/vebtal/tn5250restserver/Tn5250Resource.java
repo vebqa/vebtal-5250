@@ -42,7 +42,7 @@ public class Tn5250Resource extends AbstractTestAdaptionResource implements Test
 			Tn5250TestAdaptionPlugin.addCommandToList(cmd, cmdType);
 			
 			// execute
-			Method m = cmdClass.getDeclaredMethod("executeImpl", TerminalDriver.class);
+			Method m = cmdClass.getDeclaredMethod("executeImpl", Object.class);
 
 			setStart();
 			result = (Response)m.invoke(cmdObj, driver);
