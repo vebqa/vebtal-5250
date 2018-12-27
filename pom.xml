@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.vebqa</groupId>
 	<artifactId>vebtal-5250</artifactId>
-	<version>0.9.4</version>
+	<version>0.9.5</version>
 
 
 	<name>Test Adaption Layer for Telnet 5250 terminals</name>
@@ -183,7 +183,7 @@
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>terminaldriver-tn5250j</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
