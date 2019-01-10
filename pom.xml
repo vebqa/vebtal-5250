@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>com.github.vebqa</groupId>
 		<artifactId>vebtal-parent</artifactId>
-		<version>0.9.4</version>
+		<version>0.9.5</version>
 	</parent>
 	<artifactId>vebtal-5250</artifactId>
-	<version>0.9.7</version>
+	<version>0.9.8</version>
 
 	<name>Test Adaption Layer for Telnet 5250 terminals</name>
 	<description>Provides access for testing Telnet 5250 graphical user interfaces with junit / assertj or keyword driven approach</description>
@@ -25,7 +25,7 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
+	
 	<scm>
 		<url>https://github.com/vebqa/vebtal-5250.git</url>
 	</scm>
@@ -49,13 +49,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<modulename>vebtal5250</modulename>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>vebtal-api</artifactId>
-			<version>0.9.7</version>
+			<version>0.9.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
