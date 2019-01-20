@@ -32,7 +32,6 @@ public class Open extends AbstractCommand {
 		int codepage = 1141;
 		String ssltype = "sslv3";
 		
-		// Beispiel: target= host=ctbtest;port=992;codepage=1141;ssltype=sslv3
 		String[] someToken = target.split(";");
 
 		for (String aToken : someToken) {
@@ -71,11 +70,10 @@ public class Open extends AbstractCommand {
 		Tn5250Resource.setDriver(driver);
 		
 		Response tResponse = new Response();
-		tResponse.setCode("0");
+		tResponse.setCode(Response.PASSED);
 		
 		GuiManager.getinstance().setTabStatus(Tn5250TestAdaptionPlugin.ID, SutStatus.CONNECTED);
 		
 		return tResponse;
 	}
-
 }

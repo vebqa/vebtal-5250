@@ -24,15 +24,13 @@ public class Close extends AbstractCommand {
 		Response tResp = new Response();
 		try {
 			driver.close();
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 			tResp.setMessage("Successfully disconnected from host");
 			GuiManager.getinstance().setTabStatus(Tn5250TestAdaptionPlugin.ID, SutStatus.DISCONNECTED);
 		} catch (IOException e) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Failed to disconnected from host, because: " + e.getMessage());
 		}
-		
 		return tResp;
 	}
-
 }

@@ -95,19 +95,18 @@ public class Verifytext extends AbstractCommand {
 
 		// Vorbedingungen: es darf nicht nur nach WildCard gesucht werden
 		if (value.contentEquals("*")) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Search pattern contains wild card only.");
 			return tResp;
 		}
 
 		boolean result = ScreenUtils.checkFindBy(newFindBy, driver);
 		if (result) {
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 		} else {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Cannot find text: " + value);
 		}
 		return tResp;
 	}
-
 }

@@ -44,7 +44,7 @@ public class Keypressandwait extends AbstractCommand {
 			aButton = aButton.substring(1, aButton.length());
 			aButton = aButton.substring(0, aButton.length() - 1);
 		} else {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Need a Key as Value, e.g. [<Key>]");
 			return tResp;
 		}
@@ -54,13 +54,12 @@ public class Keypressandwait extends AbstractCommand {
 		result = driver.waitForScreen(tTimeOut);
 		
 		if (result) {
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 		} else {
 			logger.info(driver.getDumpScreen());
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Error while waiting for a screen update.");
 		}
 		return tResp;
 	}
-
 }

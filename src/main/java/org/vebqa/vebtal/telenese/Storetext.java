@@ -117,10 +117,10 @@ public class Storetext extends AbstractCommand {
 			ScreenTextBlock block = ScreenUtils.applyFindScreenTextBlock(driver, newFindBy,
 					new ScreenFieldReader(driver), 0);
 			if (block == null) {
-				tResp.setCode("1");
+				tResp.setCode(Response.FAILED);
 				tResp.setMessage("Cannot find screen text block for given target.");
 			} else {
-				tResp.setCode("0");
+				tResp.setCode(Response.PASSED);
 				tResp.setStoredKey(this.value);
 				tResp.setStoredValue(block.getString());
 				logger.info("store value {} with key {}.", block.getString(), this.value);
@@ -132,18 +132,17 @@ public class Storetext extends AbstractCommand {
 			
 			if (!screenFields.isEmpty() && screenFields.size() >= tId) {
 				ScreenField sScreenField = screenFields.get(tId - 1);
-				tResp.setCode("0");
+				tResp.setCode(Response.PASSED);
 				tResp.setStoredKey(this.value);
 
 				String storeValue = sScreenField.getString();
 				tResp.setStoredValue(storeValue);
 				logger.info("store value {} with key {}.", storeValue, this.value);
 			} else {
-				tResp.setCode("1");
+				tResp.setCode(Response.FAILED);
 				tResp.setMessage("Cannot find a screenfield with given id="+tId + "!");
 			}
 		}
 		return tResp;
 	}
-
 }

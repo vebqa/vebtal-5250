@@ -1,6 +1,5 @@
 package org.vebqa.vebtal.telenese;
 
-
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
@@ -38,10 +37,10 @@ public class Type extends AbstractCommand {
 		}
 		if (field != null) {
 			field.setString(this.value);
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 		} else {
 			// Field not found!
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Field not found!");
 		}
 		

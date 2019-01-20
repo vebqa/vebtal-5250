@@ -37,14 +37,13 @@ public class Typepassword extends AbstractCommand {
 
 		if (field != null) {
 			field.setString(this.value);
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 		} else {
 			// Field not found!
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Field not found!");
 		}
 		
 		return tResp;
 	}
-
 }

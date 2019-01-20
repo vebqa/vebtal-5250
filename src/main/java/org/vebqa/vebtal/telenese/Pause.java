@@ -43,7 +43,7 @@ public class Pause extends AbstractCommand {
 			e.printStackTrace();
 		}
 
-		tResp.setCode("0");
+		tResp.setCode(Response.PASSED);
 		tResp.setMessage("Finished sleep");
 		return tResp;
 	}

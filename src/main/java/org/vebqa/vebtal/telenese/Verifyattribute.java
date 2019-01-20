@@ -45,7 +45,7 @@ public class Verifyattribute extends AbstractCommand {
 
 		// Vorbedingungen: es darf nicht nur nach WildCard gesucht werden
 		if (value.contentEquals("*")) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Search pattern contains wild card only.");
 			return tResp;
 		}
@@ -101,10 +101,10 @@ public class Verifyattribute extends AbstractCommand {
 		}
 
 		if (found == false) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Cannot find screenfield for text: " + tText);
 		} else if (unique == false) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Found multiple screenfields for text: " + tText);
 
 		} else if (resultField != null) {
@@ -112,14 +112,13 @@ public class Verifyattribute extends AbstractCommand {
 			ScreenAttribute actualAttribute = ScreenAttribute.getAttrEnum(resultField.getAttribute());
 			
 			if (searchScrAttr == actualAttribute) {
-				tResp.setCode("0");
+				tResp.setCode(Response.PASSED);
 			} else {
-				tResp.setCode("1");
+				tResp.setCode(Response.FAILED);
 				tResp.setMessage(
 						"Expected attribute is <{" + searchScrAttr.getHexCode() + "}>, but found attribute is <{" + actualAttribute.getHexCode() + "}>.");
 			}
 		}
 		return tResp;
 	}
-
 }

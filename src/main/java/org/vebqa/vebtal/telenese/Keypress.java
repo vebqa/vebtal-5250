@@ -29,7 +29,7 @@ public class Keypress extends AbstractCommand {
 			aButton = aButton.substring(1, aButton.length());
 			aButton = aButton.substring(0, aButton.length() - 1);
 		} else {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Need a Key as Value, e.g. [<Key>]");
 			return tResp;
 		}		
@@ -37,12 +37,12 @@ public class Keypress extends AbstractCommand {
 		// Generischer Ansatz
 		driver.keys().press(Key.valueOf(aButton));
 		if (driver.getSession().getScreen().getOIA().getLevel() == ScreenOIA.OIA_LEVEL_INPUT_ERROR) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Error while sending keys to screen.");
 			logger.info(driver.getDumpScreen());
 		} else {
 			logger.info(driver.getDumpScreen());
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 		}
 		return tResp;
 	}

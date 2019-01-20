@@ -121,7 +121,7 @@ public class Waitfortext extends AbstractCommand {
 
 		// Vorbedingungen: es darf nicht nur nach WildCard gesucht werden
 		if (value.contentEquals("*")) {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Search pattern contains wild card only.");
 			return tResp;
 		}
@@ -147,13 +147,12 @@ public class Waitfortext extends AbstractCommand {
 		}
 
 		if (result) {
-			tResp.setCode("0");
+			tResp.setCode(Response.PASSED);
 			tResp.setMessage("Text: " + value + " found after : " + (testTime - now) + " ms.");
 		} else {
-			tResp.setCode("1");
+			tResp.setCode(Response.FAILED);
 			tResp.setMessage("Text: " + value + " is not visible after waiting for: " + (stop - testTime) + " ms.");
 		}
 		return tResp;
 	}
-
 }
