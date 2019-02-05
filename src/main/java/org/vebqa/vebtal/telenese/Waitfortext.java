@@ -137,7 +137,11 @@ public class Waitfortext extends AbstractCommand {
 			result = ScreenUtils.checkFindBy(newFindBy, driver);
 
 			if (!result) {
-				driver.waitForUpdate(250L);
+				try {
+					driver.wait(500L);
+				} catch (InterruptedException e) {
+					logger.error("waitForText: got interrupted!");
+				}
 			}
 
 			testTime = Calendar.getInstance().getTime().getTime();
