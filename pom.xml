@@ -8,7 +8,7 @@
 		<version>0.9.10</version>
 	</parent>
 	<artifactId>vebtal-5250</artifactId>
-	<version>0.9.11</version>
+	<version>0.9.12</version>
 
 	<name>Test Adaption Layer for Telnet 5250 terminals</name>
 	<description>Provides access for testing Telnet 5250 graphical user interfaces with junit / assertj or keyword driven approach</description>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>terminaldriver-tn5250j</artifactId>
-			<version>0.0.4</version>
+			<version>0.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
