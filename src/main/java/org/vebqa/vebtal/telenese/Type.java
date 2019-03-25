@@ -1,12 +1,15 @@
 package org.vebqa.vebtal.telenese;
 
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 import com.terminaldriver.tn5250j.obj.ScreenField;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "type", description = "type a string to a field", hintTarget = "<empty>", hintValue = "<empty")
 public class Type extends AbstractCommand {
 
 	public Type(String aCommand, String aTarget, String aValue) {

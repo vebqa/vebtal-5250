@@ -2,15 +2,18 @@ package org.vebqa.vebtal.telenese;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 import com.terminaldriver.tn5250j.annotation.ScreenAttribute;
 import com.terminaldriver.tn5250j.obj.ScreenTextBlock;
 import com.terminaldriver.tn5250j.util.ScreenFieldReader;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "verifyAttribute", description = "verify an attribute of a field", hintTarget = "<empty>", hintValue = "<empty")
 public class Verifyattribute extends AbstractCommand {
 
 	/**

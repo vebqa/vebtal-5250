@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.vebqa.vebtal.GuiManager;
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
@@ -13,6 +14,7 @@ import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "open", description = "open terminal", hintTarget = "<empty>", hintValue = "<empty")
 public class Open extends AbstractCommand {
 
 	public Open(String aCommand, String aTarget, String aValue) {

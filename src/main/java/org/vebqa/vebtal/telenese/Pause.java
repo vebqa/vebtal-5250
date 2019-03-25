@@ -2,12 +2,15 @@ package org.vebqa.vebtal.telenese;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "pause", description = "pause for some time", hintTarget = "<empty>", hintValue = "<empty")
 public class Pause extends AbstractCommand {
 
 	/**

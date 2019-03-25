@@ -2,13 +2,16 @@ package org.vebqa.vebtal.telenese;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 import com.terminaldriver.tn5250j.obj.Key;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "keyPressAndWait", description = "press a key and wait for new page to load", hintTarget = "[key]", hintValue = "<empty")
 public class Keypressandwait extends AbstractCommand {
 
 	private static final Logger logger = LoggerFactory.getLogger(Keypressandwait.class);

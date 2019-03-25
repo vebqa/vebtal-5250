@@ -7,9 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tn5250j.framework.tn5250.ScreenField;
+import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.tn5250restserver.Tn5250TestAdaptionPlugin;
 
 import com.terminaldriver.tn5250j.TerminalDriver;
 import com.terminaldriver.tn5250j.annotation.FindBy;
@@ -19,6 +21,7 @@ import com.terminaldriver.tn5250j.obj.ScreenTextBlock;
 import com.terminaldriver.tn5250j.util.ScreenFieldReader;
 import com.terminaldriver.tn5250j.util.ScreenUtils;
 
+@Keyword(module = Tn5250TestAdaptionPlugin.ID, command = "storeText", description = "store some text in variable", hintTarget = "<empty>", hintValue = "<empty")
 public class Storetext extends AbstractCommand {
 
 	/**
