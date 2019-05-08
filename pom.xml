@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>com.github.vebqa</groupId>
 		<artifactId>vebtal-parent</artifactId>
-		<version>0.9.10</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>vebtal-5250</artifactId>
-	<version>0.9.12</version>
+	<version>1.0.0</version>
 
 	<name>Test Adaption Layer for Telnet 5250 terminals</name>
 	<description>Provides access for testing Telnet 5250 graphical user interfaces with junit / assertj or keyword driven approach</description>
@@ -35,11 +35,6 @@
 		<url>https://github.com/vebqa/vebtal-5250/issues</url>
 	</issueManagement>
 
-	<organization>
-		<name>VON ESSEN Bank GmbH</name>
-		<url>https://www.vonessenbank.de/bom</url>
-	</organization>
-
 	<developers>
 		<developer>
 			<name>Karsten Doerges</name>
@@ -56,7 +51,7 @@
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>vebtal-api</artifactId>
-			<version>0.9.13</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
